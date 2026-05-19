@@ -40,8 +40,8 @@ import jakarta.servlet.http.HttpSession;
 public class DoctorController {
 
 	RestTemplate restTemplate=new RestTemplate();
-	String URL="http://localhost:9091/";
-	
+	//String URL="http://localhost:9091/";
+		String URL="doctorwebservice-production.up.railway.app/";
 
 	
 	@Autowired
