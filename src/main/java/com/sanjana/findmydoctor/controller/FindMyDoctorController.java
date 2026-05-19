@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpSession;
 public class FindMyDoctorController {
 	private RestTemplate restTemplate=new RestTemplate();
 	//private String URL="http://localhost:9091/";
-		String URL="doctorwebservice-production.up.railway.app/";
+String URL="https://doctorwebservice-production.up.railway.app/";
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
