@@ -40,8 +40,8 @@ import jakarta.servlet.http.HttpSession;
 public class UserController {
 	
 	private RestTemplate restTemplate=new RestTemplate();
-	private String URL="http://localhost:9091/";
-	
+	//private String URL="http://localhost:9091/";
+		String URL="doctorwebservice-production.up.railway.app/";
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 	
