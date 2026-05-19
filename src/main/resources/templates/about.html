@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Find My Doctor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold d-flex flex-column" href="/">
+                <span>
+                <i class="fas fa-stethoscope me-2"></i>Find My Doctor
+                </span>
+                <small style="font-size:12px; color:lightgray; margin-left:30px;">
+                    Powered with AI
+                </small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="search-doctor">Search Doctors</a></li>
+                            <li><a class="dropdown-item" href="symptom-checker"> AI Symptoms Checker</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container py-5">
+            <h1 class="mb-3">About Find My Doctor</h1>
+            <p class="lead">Revolutionizing Healthcare Access Through Technology</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <!-- Mission & Vision -->
+            <div class="about-section">
+                <h2>Our Mission & Vision</h2>
+                <p>At Find My Doctor, our mission is to bridge the gap between patients and healthcare professionals by providing a seamless, user-friendly platform for booking appointments and accessing medical consultations.</p>
+                <p>We envision a future where healthcare is accessible to everyone, regardless of their location or time constraints. Through technology and innovation, we aim to reduce waiting times, improve healthcare accessibility, and empower patients to take control of their health.</p>
+            </div>
+
+            <!-- What We Do -->
+            <div class="about-section">
+                <h2>What We Do</h2>
+                <p>Find My Doctor is an innovative online healthcare platform that connects patients with qualified doctors for:</p>
+                <ul style="color: #666; line-height: 2;">
+                    <li><strong>Doctor Search:</strong> Find healthcare professionals by specialty, location, and ratings</li>
+                    <li><strong>Appointment Booking:</strong> Schedule convenient appointment times for in-person consultations</li>
+                    <li><strong>Video Consultations:</strong> Consult with doctors remotely via secure video calls</li>
+                    <li><strong>Symptom Checker:</strong> Get preliminary health insights based on symptoms</li>
+                    <li><strong>Doctor Recommendations:</strong> Receive personalized doctor suggestions based on health conditions</li>
+                </ul>
+            </div>
+
+            <!-- Why Choose Us -->
+            <div class="about-section">
+                <h2>Why Choose Us?</h2>
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-4">
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="color: var(--primary-color); font-size: 1.5rem;">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <h5>Verified Doctors</h5>
+                                <p>All doctors on our platform are verified professionals with proper qualifications and experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="color: var(--primary-color); font-size: 1.5rem;">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div>
+                                <h5>Privacy & Security</h5>
+                                <p>Your medical information is encrypted and protected with the highest security standards.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="color: var(--primary-color); font-size: 1.5rem;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>24/7 Availability</h5>
+                                <p>Book appointments and consult doctors at times that suit your schedule.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="color: var(--primary-color); font-size: 1.5rem;">
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                            <div>
+                                <h5>Affordable Rates</h5>
+                                <p>Compare doctor fees and choose the most affordable consultation options.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <div class="about-section">
+                <h2>Key Features</h2>
+                <div class="row g-3 mt-4">
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <i class="fas fa-search text-primary fa-2x mb-3"></i>
+                                <h5 class="card-title">Advanced Search</h5>
+                                <p class="card-text">Filter doctors by specialty, location, ratings, and availability</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <i class="fas fa-video text-primary fa-2x mb-3"></i>
+                                <h5 class="card-title">Video Consultations</h5>
+                                <p class="card-text">Secure video calls with doctors from your home</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <i class="fas fa-prescription-bottle text-primary fa-2x mb-3"></i>
+                                <h5 class="card-title">Prescription Management</h5>
+                                <p class="card-text">Digital prescriptions and appointment history tracking</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <i class="fas fa-user-check text-primary fa-2x mb-3"></i>
+                                <h5 class="card-title">Patient Profiles</h5>
+                                <p class="card-text">Maintain your medical history and health records</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <i class="fas fa-star text-primary fa-2x mb-3"></i>
+                                <h5 class="card-title">Ratings & Reviews</h5>
+                                <p class="card-text">Read reviews from other patients to make informed choices</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body">
+                                <i class="fas fa-headset text-primary fa-2x mb-3"></i>
+                                <h5 class="card-title">24/7 Support</h5>
+                                <p class="card-text">Customer support available round the clock</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Objectives -->
+            <div class="about-section">
+                <h2>Our Objectives</h2>
+                <div class="row g-3 mt-4">
+                    <div class="col-md-6">
+                        <div class="card border-primary bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-bullseye text-primary me-2"></i>Primary Objectives</h5>
+                                <ul style="color: #666; margin-bottom: 0;">
+                                    <li>Create a user-friendly platform for booking doctor appointments</li>
+                                    <li>Provide seamless online video consultation services</li>
+                                    <li>Implement AI-powered symptom-based disease prediction</li>
+                                    <li>Recommend suitable doctors based on patient symptoms</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-primary bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-chart-line text-primary me-2"></i>Secondary Objectives</h5>
+                                <ul style="color: #666; margin-bottom: 0;">
+                                    <li>Reduce waiting time and improve healthcare accessibility</li>
+                                    <li>Maintain secure patient and doctor records</li>
+                                    <li>Build trust through verified doctors and patient reviews</li>
+                                    <li>Expand services to underserved healthcare areas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Users -->
+            <div class="about-section">
+                <h2>System Users</h2>
+                <div class="row g-3 mt-4">
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <i class="fas fa-user fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Patients</h5>
+                                <p class="card-text">
+                                    Search and book doctors, schedule consultations, view health insights, and manage appointment history.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <i class="fas fa-stethoscope fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Doctors</h5>
+                                <p class="card-text">
+                                    Manage appointments, conduct video consultations, update availability, and provide prescriptions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Administrators</h5>
+                                <p class="card-text">
+                                    Manage platform, approve doctors, handle complaints, and generate system reports.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Our Team -->
+            <div class="about-section">
+                <h2>Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-member-avatar">👨‍💼</div>
+                        <h4>John Anderson</h4>
+                        <p>CEO & Founder</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">👩‍💼</div>
+                        <h4>Sarah Johnson</h4>
+                        <p>CTO & Lead Developer</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">👨‍⚕️</div>
+                        <h4>Dr. Rajesh Kumar</h4>
+                        <p>Medical Advisor</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-member-avatar">👩‍⚕️</div>
+                        <h4>Dr. Priya Singh</h4>
+                        <p>Healthcare Consultant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5">
+        <div class="container text-center">
+            <h2>Ready to Experience Better Healthcare?</h2>
+            <p class="lead mb-4">Join thousands of patients who are already using Find My Doctor</p>
+            <a href="search-doctor" class="btn btn-primary btn-lg me-3">Find a Doctor</a>
+            <a href="contact" class="btn btn-outline-primary btn-lg">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+	<footer class="bg-dark text-white py-4 mt-5">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md mb-4">
+	                    <h5>Find My Doctor</h5>
+	                    <p>Your trusted healthcare platform for online consultations and appointments.</p>
+	                </div>
+	                <div class="col-md mb-4 text-end">
+	                    <h5>Follow Us</h5>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-facebook"></i></a>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-twitter"></i></a>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-linkedin"></i></a>
+	                    <a href="#" class="text-secondary"><i class="fab fa-instagram"></i></a>
+	                </div>
+	            </div>
+	            <hr class="bg-secondary">
+	            <div class="text-center text-muted ">
+	                <p>&copy; Find My Doctor. All rights reserved.</p>
+	            </div>
+	        </div>
+	    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

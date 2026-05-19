@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Find My Doctor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold d-flex flex-column" href="/">
+                <span>
+                <i class="fas fa-stethoscope me-2"></i>Find My Doctor
+                </span>
+                <small style="font-size:12px; color:lightgray; margin-left:30px;">
+                    Powered with AI
+                </small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="search-doctor">Search Doctors</a></li>
+                            <li><a class="dropdown-item" href="symptom-checker"> AI Symptoms Checker</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="fas fa-user-plus display-1 mb-3"></i>
+                <h2>Create User Account</h2>
+                <p>Join us to book appointments with doctors</p>
+            </div>
+			<p th:if="${msg}" th:text="${msg}" class="text-center bg-warning p-2" ></p>
+            <!-- Signup Form -->
+            <form th:action="@{/user/register}" method="post" id="signupForm" class="login-body">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input name="name" type="text" id="fullName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input name="email" type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input name="phone" type="tel" id="phone" class="form-control" placeholder="Enter your phone" minlength="10" maxlength="10" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input name="password" type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
+                </div>
+                
+                <!-- Patient Specific Fields -->
+                <div id="patient-fields">
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input name="dob" type="date" id="dob" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select name="gender" id="gender" class="form-select">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login">Create User Account</button>
+            </form>
+
+            <!-- Login Footer -->
+            <div class="login-footer">
+                <p>Already have an account? <a th:href="@{/login}">Sign in here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Find My Doctor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold d-flex flex-column" href="/">
+                <span>
+                <i class="fas fa-stethoscope me-2"></i>Find My Doctor
+                </span>
+                <small style="font-size:12px; color:lightgray; margin-left:30px;">
+                    Powered with AI
+                </small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="search-doctor">Search Doctors</a></li>
+                            <li><a class="dropdown-item" href="symptom-checker"> AI Symptoms Checker</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container py-5">
+            <h1 class="mb-3 bg-danger text-white p-3">Exception Occured!</h1>
+        </div>
+    </section>
+
+	<!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container-fluid px-0">
+            <div class="row g-0 align-items-center min-vh-100">
+                <div class="col-lg-6 hero-content p-5">
+                    <div class="hero-text">
+                        <h1 class="display-3 fw-bold mb-4">Your Health, <span class="text-primary">Our Priority</span></h1>
+                        <p class="lead mb-4">Connect with experienced doctors, book appointments, and access healthcare services from the comfort of your home.</p>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="search-doctor" class="btn btn-primary btn-lg">Find a Doctor</a>
+                            <a href="symptom-checker" class="btn btn-outline-primary btn-lg">AI Symptoms Checker</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 hero-image">
+                    <div class="hero-illustration">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose Find My Doctor?</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Find Doctors</h4>
+                        <p>Search doctors by specialization and location instantly</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h4>Book Appointments</h4>
+                        <p>Schedule appointments at your convenient time slots</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h4>Video Consultation</h4>
+                        <p>Consult with doctors via secure video calls</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h4>Health Insights</h4>
+                        <p>Get personalized health recommendations and insights</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">How It Works</h2>
+            <div class="row g-4 align-items-center">
+                <div class="col-md-6">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h4>Register/Login</h4>
+                        <p>Create your account or login to access all features</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h4>Search Doctors</h4>
+                        <p>Find doctors by specialty, location, and availability</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h4>Book Appointment</h4>
+                        <p>Select your preferred time slot and book instantly</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <h4>Consult</h4>
+                        <p>Meet your doctor for in-person or video consultation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3 class="display-4 mb-2">5000+</h3>
+                        <p class="lead">Verified Doctors</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3 class="display-4 mb-2">50K+</h3>
+                        <p class="lead">Happy Patients</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3 class="display-4 mb-2">100K+</h3>
+                        <p class="lead">Appointments</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3 class="display-4 mb-2">24/7</h3>
+                        <p class="lead">Support Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5 bg-gradient">
+        <div class="container text-center">
+            <h2 class="mb-4">Ready to Find Your Doctor?</h2>
+            <p class="lead mb-4">Join thousands of patients who have already experienced better healthcare</p>
+            <a href="login" class="btn btn-primary btn-lg me-3">Get Started</a>
+            <a href="about" class="btn btn-outline-primary btn-lg">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+	<footer class="bg-dark text-white py-4 mt-5">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md mb-4">
+	                    <h5>Find My Doctor</h5>
+	                    <p>Your trusted healthcare platform for online consultations and appointments.</p>
+	                </div>
+	                <div class="col-md mb-4 text-end">
+	                    <h5>Follow Us</h5>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-facebook"></i></a>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-twitter"></i></a>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-linkedin"></i></a>
+	                    <a href="#" class="text-secondary"><i class="fab fa-instagram"></i></a>
+	                </div>
+	            </div>
+	            <hr class="bg-secondary">
+	            <div class="text-center text-muted ">
+	                <p>&copy; Find My Doctor. All rights reserved.</p>
+	            </div>
+	        </div>
+	    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

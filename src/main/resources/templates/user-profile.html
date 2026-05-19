@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments - Find My Doctor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+           <a class="navbar-brand fw-bold d-flex flex-column" th:href="@{/user/user-home}">
+                <span>
+                <i class="fas fa-stethoscope me-2"></i>Find My Doctor
+                </span>
+                <small style="font-size:12px; color:lightgray; margin-left:30px;">
+                    Powered with AI
+                </small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/user/user-home}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/user/user-home}">AI Symptoms Checker</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/user/user-search-doctor}">Doctors</a>
+					</li>
+                    <li class="nav-item">
+						<a class="nav-link" th:href="@{/user/user-appointments}">Appointments</a>
+					</li>
+					<li class="nav-item bg-warning text-dark rounded me-2">
+						<span class="nav-link">
+							<img th:src="@{/user/getPhoto}" class="img-fluid" alt="..."  width="30px"> 
+							<span th:text="${session.user.name}"></span>
+						</spanclass="nav-item bg-warning rounded">
+					</li>
+					<li class="nav-item bg-warning rounded me-2">
+						<a class="nav-link" th:href="@{/user/user-profile}">Profile</a>
+					</li>
+					<li class="nav-item bg-danger rounded me-2">
+						<a class="nav-link" th:href="@{/dologout}">Logout</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	<p th:if="${msg}" th:text="${msg}" class="text-center bg-warning p-2" ></p>
+	<div class="container my-5">
+        <h1 class="text-center mb-4">User Profile</h1>
+        <div class="row ">
+            
+            <!-- User Profile Section -->
+            <div class="col-md">
+                <div class="card shadow-sm p-4">
+                    <!-- Profile Photo -->
+                    <img th:src="@{/user/getPhoto}" width="100" class="mb-2">
+                    <div class="card card-body">
+                      <h2 class="">Update Image</h2>
+                      <form th:action="@{/user/updatePhoto}" enctype="multipart/form-data" method="post">
+                        <div class="mb-3">
+                        <label for="formFile" class="form-label">Select Image.</label>
+                        <input name="photo" class="form-control" type="file" id="formFile" required>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block m-2">Update Image</button>
+                      </form>
+                    </div>
+                    <!-- User Details -->
+                    <div class="mt-4">
+                        <div class="">
+                        <strong>Name:</strong> <span th:text="${session.user.name}">Speciality</span> 
+                        </div>
+                        <div class="">
+                            <strong>Email:</strong> <span th:text="${session.user.email}">email</span> 
+                        </div>
+                        <div class="">
+                        <strong>Phone:</strong> <span th:text="${session.user.phone}">Speciality</span> 
+                        </div>
+                        <div class="">
+                            <strong> Date of Birth:</strong> <span th:text="${#dates.format(session.user.dob, 'dd MMM yyyy')}">01 Jan 2000</span> 
+                        </div>
+                        <div class="">
+                        <strong>Gender:</strong> <span th:text="${session.user.gender}">Gender</span> 
+                        </div>
+                    </div>
+                    <!-- Update Button -->
+                    <div class="text-center mt-4">
+                        <button type="button" class="btn btn-primary update-btn px-4 py-2" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                        <button type="button" class="btn btn-primary update-btn px-4 py-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Update Password
+                          </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<!-- Modal for Editing Profile -->
+	<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <form th:action="@{/user/updateUser}" method="post">
+	                    <!-- Name -->
+	                    <div class="mb-3">
+	                        <label for="name" class="form-label"><i class="fas fa-user"></i> Name</label>
+	                        <input type="text" class="form-control" id="name" name="name" th:value="${session.user.name}" >
+	                    </div>
+	                    <!-- Email -->
+	                    <div class="mb-3">
+	                        <label for="email" class="form-label"><i class="fas fa-envelope"></i> Email</label>
+	                        <input type="email" class="form-control" id="email" name="email" th:value="${session.user.email}" readonly>
+	                    </div>
+	                    <!-- Phone -->
+	                    <div class="mb-3">
+	                        <label for="phone" class="form-label"><i class="fas fa-phone"></i> Phone</label>
+	                        <input type="text" class="form-control" id="phone" name="phone" maxlength="10" minlength="10" th:value="${session.user.phone}" required>
+	                    </div>
+	                    <!-- Date of Birth -->
+	                    <div class="mb-3">
+	                        <label for="dob" class="form-label"><i class="fas fa-calendar-alt"></i> Date of Birth</label>
+	                        <input type="date" class="form-control" id="dob" name="dob" th:value="${session.user.dob}" required>
+	                    </div>
+	                    <!-- Gender -->
+	                    <div class="mb-3">
+	                        <label for="gender" class="form-label"><i class="fas fa-venus-mars"></i> Gender</label>
+	                        <select class="form-select" id="gender" name="gender">
+	                            <option th:selected="${session.user.gender == 'Male'}" value="Male">Male</option>
+	                            <option th:selected="${session.user.gender == 'Female'}" value="Female">Female</option>
+	                            <option th:selected="${session.user.gender == 'Other'}" value="Other">Other</option>
+	                        </select>
+	                    </div>
+	                    <!-- Profile Photo -->
+	                    <!-- <div class="mb-3">
+	                        <label for="photo" class="form-label"><i class="fas fa-image"></i> Profile Photo</label>
+	                        <input type="file" class="form-control" id="photo" name="photo">
+	                    </div> -->
+	                    <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+	                </form>     
+	            </div>
+	        </div>
+	    </div>
+	</div>  
+
+
+	  
+	<!-- Modal Password -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Password</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form th:action="@{/user/updatePassword}" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" class="form-control" id="email" name="email" th:value="${session.user.email}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="oldPassword" class="form-label"><i class="fas fa-envelope"></i> Old Password</label>
+                <input type="password" class="form-control" id="password" name="oldpassword" required>
+            </div>
+            <div class="mb-3">
+                <label for="newPassword" class="form-label"><i class="fas fa-envelope"></i>Enter New Password</label>
+                <input type="password" class="form-control" id="password" name="newpassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  	</div>
+	
+    <!-- Footer -->
+	<footer class="bg-dark text-white py-4 mt-5">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md mb-4">
+	                    <h5>Find My Doctor</h5>
+	                    <p>Your trusted healthcare platform for online consultations and appointments.</p>
+	                </div>
+	                <div class="col-md mb-4 text-end">
+	                    <h5>Follow Us</h5>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-facebook"></i></a>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-twitter"></i></a>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-linkedin"></i></a>
+	                    <a href="#" class="text-secondary"><i class="fab fa-instagram"></i></a>
+	                </div>
+	            </div>
+	            <hr class="bg-secondary">
+	            <div class="text-center text-muted ">
+	                <p>&copy; Find My Doctor. All rights reserved.</p>
+	            </div>
+	        </div>
+	    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

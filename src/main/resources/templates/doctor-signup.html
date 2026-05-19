@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Find My Doctor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+           <a class="navbar-brand fw-bold d-flex flex-column" href="index">
+                <span>
+                <i class="fas fa-stethoscope me-2"></i>Find My Doctor
+                </span>
+                <small style="font-size:12px; color:lightgray; margin-left:30px;">
+                    Powered with AI
+                </small>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+	<div class="login-container">
+	        <div class="login-card">
+	            <div class="login-header">
+	                <i class="fas fa-user-plus display-1 mb-3"></i>
+                <h2>Create Doctor Account</h2>
+                <p>Join us to book appointments with doctors</p>
+            </div>
+			<p th:if="${msg}" th:text="${msg}" class="text-center bg-warning p-2" ></p>
+			<form th:action="@{/doctor/register}" method="post" id="signupForm" class="login-body" >
+		        <div class="form-group">
+		          <label for="">Email :</label>
+		        <input type="email" name="email"  placeholder="Email" class="form-control" required />
+		        </div>
+		        <div>
+		          <label for="">Password :</label>
+		        <input type="password" name="password" placeholder="Password" class="form-control" required />
+		        </div>
+		        <div class="form-group">
+		        <label for="">Name :</label>
+		        <input type="text" name="name" pattern="[a-zA-Z ]+" maxlength="50" placeholder="name" class="form-control" required />
+		        </div>
+		        <button type="submit" class="btn-login">Sign-up</button>
+		    </form>
+            
+            
+            
+            <!-- Login Footer -->
+            <div class="login-footer">
+                <p>Already have an account? <a th:href="@{/login}">Sign in here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+      
+</body>
+</html>
