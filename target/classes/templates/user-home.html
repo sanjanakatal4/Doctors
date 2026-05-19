@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments - Find My Doctor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+           <a class="navbar-brand fw-bold d-flex flex-column" th:href="@{/user/user-home}">
+                <span>
+                <i class="fas fa-stethoscope me-2"></i>Find My Doctor
+                </span>
+                <small style="font-size:12px; color:lightgray; margin-left:30px;">
+                    Powered with AI
+                </small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/user/user-home}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/user/user-home}">AI Symptoms Checker</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/user/user-search-doctor}">Doctors</a>
+					</li>
+                    <li class="nav-item">
+						<a class="nav-link" th:href="@{/user/user-appointments}">Appointments</a>
+					</li>
+					<li class="nav-item bg-warning text-dark rounded me-2">
+						<span class="nav-link">
+							<img th:src="@{/user/getPhoto}" class="img-fluid" alt="..."  width="30px"> 
+							<span th:text="${session.user.name}"></span>
+						</spanclass="nav-item bg-warning rounded">
+					</li>
+					<li class="nav-item bg-warning rounded me-2">
+						<a class="nav-link" th:href="@{/user/user-profile}">Profile</a>
+					</li>
+					<li class="nav-item bg-danger rounded me-2">
+						<a class="nav-link" th:href="@{/dologout}">Logout</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	<p th:if="${msg}" th:text="${msg}" class="text-center bg-warning p-2" ></p>
+	<!-- Symptom Checker Container -->
+    <div class="symptom-container p-3">
+        <div class="container">
+            <div class="row justify-content-center p-3 bg-light rounded">
+                <div class="col-md-6">
+                    <!-- Symptom Selection Form -->
+                    <div class="symptom-form">
+                        <h3 class="mb-4">
+                            <i class="fas fa-list-check me-2"></i>Type Your Symptoms
+                        </h3>
+                        <p class="text-muted mb-4">Type all the symptoms that you are experiencing:</p>
+
+                        <form th:action="@{/symptomChecker}" method="post" >
+							<div>
+	                            <textarea name="symptoms" class="form-control" rows="5" ></textarea>
+	                        </div>
+	
+	                        <button class="btn btn-primary btn-lg w-100 mt-4">
+	                            <i class="fas fa-stethoscope me-2"></i>Check Symptoms
+	                        </button>
+						</form>
+                    </div>
+
+					
+                </div>
+				<div class="col-md-6">
+					<style>
+					  #typing span {
+					    visibility: hidden;
+					    display: inline-block;
+					    white-space: pre-wrap;
+					  }
+					
+					  #typing ul {
+					    list-style-type: none; /* 🔹 Removes bullet points */
+					    padding-left: 0;
+					    margin-left: 0;
+					  }
+					</style>
+                    <!-- Results Section -->
+                    <div th:if="${aiResponse}" id="results-container" class="symptom-form">
+                        <!-- Results will be displayed here -->
+						<div id="typing">
+							<p> <big> <span th:text="${aiResponse.message}"></span> </big></p>
+							<p> <b> <span>Recommendations:</span> </b> 
+								<ul th:each="r : ${aiResponse.recommendations}">
+									<li> <span th:text="${r}"></span> </li>
+								</ul>
+							</p>
+							<p> <b><span>Warnings:</span> </b> 
+								<ul th:each="r : ${aiResponse.warnings}">
+									<li> <span th:text="${r}"></span> </li>
+								</ul>
+							</p>
+							<p> <b><span>Requires Physician Consult:</span>  </b> <span th:text="${aiResponse.requiresPhysicianConsult}"></span> </p>
+							<p> <b><span>Emergency Level:</span> </b> <span th:text="${aiResponse.emergencyLevel}"></span> </p>
+							<p> <b><span>Top Related Specialties:</span> </b>
+								<ul th:each="r : ${aiResponse.topRelatedSpecialties}">
+									<li> <span th:text="${r}"></span> </li>
+								</ul>
+							</p>
+						</div>
+                    </div>
+					<script>
+					  document.addEventListener("DOMContentLoaded", function () {
+					    const spans = Array.from(document.querySelectorAll("#typing span"));
+					    let currentIndex = 0;
+					
+					    function typeText(span, text, callback) {
+					      let i = 0;
+					      span.textContent = "";
+					      span.style.visibility = "visible";
+					
+					      function type() {
+					        if (i < text.length) {
+					          span.textContent += text.charAt(i);
+					          i++;
+					          setTimeout(type, 25); // Typing speed
+					        } else {
+					          if (callback) callback();
+					        }
+					      }
+					
+					      type();
+					    }
+					
+					    function typeNextSpan() {
+					      if (currentIndex >= spans.length) return;
+					
+					      const span = spans[currentIndex];
+					      const originalText = span.textContent;
+					      typeText(span, originalText, () => {
+					        currentIndex++;
+					        typeNextSpan();
+					      });
+					    }
+					
+					    typeNextSpan();
+					  });
+					</script>
+                </div>
+            </div>
+
+            <!-- Information Section -->
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <i class="fas fa-info-circle fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Self-Assessment</h5>
+                            <p class="card-text text-muted">Check your symptoms and get preliminary insights about possible conditions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <i class="fas fa-user-md fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Consult Doctor</h5>
+                            <p class="card-text text-muted">After assessment, consult with our qualified doctors for proper diagnosis and treatment.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <i class="fas fa-shield-alt fa-2x text-primary mb-3"></i>
+                            <h5 class="card-title">Privacy Protected</h5>
+                            <p class="card-text text-muted">Your health information is secure and confidential with us.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+    <!-- Footer -->
+	<footer class="bg-dark text-white py-4 mt-5">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md mb-4">
+	                    <h5>Find My Doctor</h5>
+	                    <p>Your trusted healthcare platform for online consultations and appointments.</p>
+	                </div>
+	                <div class="col-md mb-4 text-end">
+	                    <h5>Follow Us</h5>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-facebook"></i></a>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-twitter"></i></a>
+	                    <a href="#" class="text-secondary me-3"><i class="fab fa-linkedin"></i></a>
+	                    <a href="#" class="text-secondary"><i class="fab fa-instagram"></i></a>
+	                </div>
+	            </div>
+	            <hr class="bg-secondary">
+	            <div class="text-center text-muted ">
+	                <p>&copy; Find My Doctor. All rights reserved.</p>
+	            </div>
+	        </div>
+	    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

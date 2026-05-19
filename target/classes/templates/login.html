@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Find My Doctor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold d-flex flex-column" href="/">
+                <span>
+                <i class="fas fa-stethoscope me-2"></i>Find My Doctor
+                </span>
+                <small style="font-size:12px; color:lightgray; margin-left:30px;">
+                    Powered with AI
+                </small>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="search-doctor">Search Doctors</a></li>
+                            <li><a class="dropdown-item" href="symptom-checker"> AI Symptoms Checker</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="fas fa-user-circle display-1 mb-3"></i>
+                <h2>Welcome Back</h2>
+                <p>Sign in to your account</p>
+            </div>
+			<p th:if="${msg}" th:text="${msg}" class="text-center bg-warning p-2" ></p>
+            <!-- User Type Selection -->
+            <div style="padding: 1.5rem;">
+				<div class="accordion" id="accordionExample">
+				  <div class="accordion-item">
+				    <h2 class="accordion-header">
+				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				        User Login:
+				      </button>
+				    </h2>
+				    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+				      <div class="accordion-body">
+						<!-- Login Form -->
+			            <form th:action="@{/user/login}" method="post" class="login-body">
+			                <div class="form-group">
+			                    <label for="email">User Email Address</label>
+			                    <input name="email" type="email" id="email" class="form-control" placeholder="Enter your email" required>
+			                </div>
+	
+			                <div class="form-group">
+			                    <label for="password">Password</label>
+			                    <input name="password" type="password" id="password" class="form-control" placeholder="Enter your password" required>
+			                </div>
+							
+			                <button type="submit" class="btn-login">Sign In</button>
+			            </form>
+						     
+						<!-- Button trigger modal -->
+						<a href='' class="text-primary" data-bs-toggle="modal" data-bs-target="#userForgetPassword">
+						  Forget Password
+						</a>
+
+						<!-- Modal -->
+						<div class="modal fade" id="userForgetPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h1 class="modal-title fs-5" id="exampleModalLabel">Forget Password</h1>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+							      <form th:action="@{/user/forgetPassword}" id="user-log" method="post">
+							          <div>
+							            <label for="">User-Id :</label>
+							          <input type="email" name="email" placeholder="UserId" required />
+							          </div>
+							          <div>
+							            <label for="">New Password :</label>
+							          <input type="password" name="newpassword" placeholder="Password" required />
+							          </div>
+							          <button type="submit">Submit</button>
+							      </form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+	
+			            <!-- Login Footer -->
+			            <div class="login-footer">
+			                <p>Don't have an account? <a href="signup">Sign up here</a></p>
+			            </div>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="accordion-item">
+				    <h2 class="accordion-header">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				        Doctor Login:
+				      </button>
+				    </h2>
+				    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+						<!-- Login Form -->
+			            <form th:action="@{/doctor/login}" method="post" class="login-body">
+			                <div class="form-group">
+			                    <label for="email">Doctor Email Address</label>
+			                    <input name="email" type="email" id="email" class="form-control" placeholder="Enter your email" required>
+			                </div>
+	
+			                <div class="form-group">
+			                    <label for="password">Password</label>
+			                    <input name="password" type="password" id="password" class="form-control" placeholder="Enter your password" required>
+			                </div>
+	
+			                
+			                <button type="submit" class="btn-login">Sign In</button>
+			            </form>
+
+						<!-- Button trigger modal -->
+						<a href='' class="text-primary" data-bs-toggle="modal" data-bs-target="#doctorForgetPassword">
+						  Forget Password
+						</a>
+
+						<!-- Modal -->
+						<div class="modal fade" id="doctorForgetPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h1 class="modal-title fs-5" id="exampleModalLabel">Forget Password</h1>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+							      <form th:action="@{/doctor/forgetPassword}" id="user-log" method="post">
+							          <div>
+							            <label for="">Doctor-Id :</label>
+							          <input type="email" name="email" placeholder="DoctorId" required />
+							          </div>
+							          <div>
+							            <label for="">New Password :</label>
+							          <input type="password" name="newpassword" placeholder="Password" required />
+							          </div>
+							          <button type="submit">Submit</button>
+							      </form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+			            <!-- Login Footer -->
+			            <div class="login-footer">
+			                <p>Don't have an account? <a href="doctorsignup">Sign up here</a></p>
+			            </div>
+				      	</div>
+				    </div>
+				  </div>
+				</div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Reset Password</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="resetPasswordForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="resetEmail">Enter your email address</label>
+                            <input type="email" id="resetEmail" class="form-control" placeholder="your@email.com" required>
+                        </div>
+                        <p class="text-muted small mt-3">We'll send you an email with instructions to reset your password.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+    
+</body>
+</html>
